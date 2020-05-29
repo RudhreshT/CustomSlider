@@ -27,8 +27,8 @@
     left: 0px;
     top: 0px;
     opacity:0.3;
-  
   }
+  
   .caption{
     position: absolute;
     left: 0px;
@@ -58,6 +58,10 @@
     font-size: 10px;
     font-weight: 700;
   }
+  
+.thumpnails:hover{
+  opacity: unset !important;
+}
 
 @media screen and (max-width:767px){
   .caption{
@@ -74,3 +78,13 @@
     font-size: 1.8em;
   }
 }
+
+/* @media screen and (max-width:992px){
+  .col-lg-10{
+    flex: 0 0 100%;
+    max-width: none;
+  }
+  .col-lg-2{
+  display: none;
+}
+} */

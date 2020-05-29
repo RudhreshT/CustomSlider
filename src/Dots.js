@@ -18,16 +18,24 @@ const Dots = ({ slides, activeIndex }) => (
   <div
     css={css`
       position: absolute;
-      bottom: 25px;
-      width: 100%;
+      bottom: 0;
+      top: 0;
+      right: 25px;
       display: flex;
       align-items: center;
       justify-content: center;
     `}
   >
     {slides.map((slide, i) => (
-      <Dot key={slide} active={activeIndex === i} />
+      <Dot style={{width: '200px', height: '120px', backgroundSize: 'cover', backgroundImage: 'url("https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80")'}} key={slide} active={activeIndex === i}/>
     ))}
+      <div style={{width: '200px'}}>
+        <div style={{width: '200px', height: '120px', backgroundSize: 'cover', backgroundImage: 'url("https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80")'}}></div>
+        <div style={{width: '200px', height: '120px', backgroundSize: 'cover', backgroundImage: 'url("https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80")'}}></div>
+        <div style={{width: '200px', height: '120px', backgroundSize: 'cover', backgroundImage: 'url("https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80")'}}></div>
+        <div style={{width: '200px', height: '120px', backgroundSize: 'cover', backgroundImage: 'url("https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80")'}}></div>
+      </div>
+     
   </div>
 )
 

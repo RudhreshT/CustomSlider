@@ -7,6 +7,9 @@ import Arrow from './Arrow'
 import Dots from './Dots'
 import './imgslider.css'
 import SliderCaptions from './SliderCaptions'
+import Thumpnail from './SliderThump'
+import 'react-bootstrap';
+
 /**
  * @function Slider
  */
@@ -65,30 +68,85 @@ const Slider = props => {
     size:"1.1em"
   }]
   return (
-    <div css={SliderCSS}>
-      <SliderContent
-        translate={translate}
-        transition={transition}
-        width={getWidth() * props.slides.length}
-      >
-        {props.slides.map((slide, i) => (
-          <Slide key={slide + i} content={slide} />
-        ))}
-      </SliderContent>
-      <SliderCaptions _Text={text} />
-      <Arrow direction="left" handleClick={prevSlide} />
-      <Arrow direction="right" handleClick={nextSlide} />
-
-      {/* <Dots slides={props.slides} activeIndex={activeIndex} /> */}
+    // <div className="col-lg-12 row">
+    //   <div className="col-lg-9"  css={SliderCSS}>
+    //       <SliderContent
+    //         translate={translate}
+    //         transition={transition}
+    //         width={getWidth() * props.slides.length}
+    //       >
+    //         {props.slides.map((slide, i) => (
+    //           <Slide key={slide + i} content={slide} />
+    //         ))}
+    //       </SliderContent>
+    //       <SliderCaptions _Text={text} />
+    //       <Arrow direction="left" handleClick={prevSlide} />
+    //       <Arrow direction="right" handleClick={nextSlide} />
+    //   </div>
+    //   <div className="col-lg-3" css={Thump}>
+    //     {/* {props.slides.map((slide, i) => (
+    //     <Thumpnail slides={props.slides} activeIndex={activeIndex} content={slide} />
+    //     ))} */}
+    //      {props.slides.map((content, i) => (
+    //     <div key={i}>
+    //         <img style={{width: '100px',height: '100px', opacity: 'unset'}} src={content} />
+    //     </div>
+    //   ))}
+    //   </div>
+    // </div>
+    <div className="container">
+      <div className="row col-lg-12" style={{backgroundColor:'#222c33'}}>
+        <div className="col-lg-10" css={SliderCSS}>
+            <SliderContent
+                  css={image}
+                  translate={translate}
+                  transition={transition}
+                  width={getWidth() * props.slides.length}
+                >
+                  {props.slides.map((slide, i) => (
+                    <Slide key={slide + i} content={slide} />
+                  ))}
+                </SliderContent>
+                <SliderCaptions _Text={text} />
+                <Arrow direction="left" handleClick={prevSlide} />
+                <Arrow direction="right" handleClick={nextSlide} />
+        </div>
+        <div className="col-lg-2" css={Thump}>
+          {props.slides.map((content, i) => (
+            <div key={i} style={{margin:"10px 0px"}}>
+                <img className="thumpnails" style={{width:"100%", height: '100px', opacity: '0.5'}} src={content} />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
 
+const Thump = css`
+position: absolute;
+top: 0;
+right: 0px;
+display: grid;
+height: 80vh;
+overflow: overlay;
+`
+const image = css`
+// width: 100%;
+// display: inline;
+`
+
 const SliderCSS = css`
   position: relative;
   height: 80vh;
-  width: 100vw;
-  margin: 0 auto;
+  // width: 80vw;
+  // margin: 0 auto;
   overflow: hidden;
+  right:20%;
+  left:0;
+  background-color: #282c34;
+  padding-right : 0;
+  padding-left : 0;
 `
+
 export default Slider
