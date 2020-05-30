@@ -61,6 +61,8 @@
   
 .thumpnails:hover{
   opacity: unset !important;
+  cursor: pointer;
+
 }
 
 @media screen and (max-width:767px){
@@ -77,14 +79,14 @@
   .large-txt{
     font-size: 1.8em;
   }
+  .container{
+    padding:0 !important;
+    margin:0 !important;
+  }
 }
 
-/* @media screen and (max-width:992px){
-  .col-lg-10{
-    flex: 0 0 100%;
-    max-width: none;
+@media screen and (max-width:992px){
+  .sm-thum{
+    display: none!important;
   }
-  .col-lg-2{
-  display: none;
 }
-} */

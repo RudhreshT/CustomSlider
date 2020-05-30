@@ -38,8 +38,15 @@ const Slider = props => {
       activeIndex: activeIndex + 1,
       translate: (activeIndex + 1) * getWidth()
     })
+  } 
+  let changeonClick=(index)=>{
+    console.log('enter');
+    return setState({
+      ...state,
+      translate: index * getWidth(),
+      activeIndex: index
+    })
   }
-
   const prevSlide = () => {
     if (activeIndex === 0) {
       return setState({
@@ -68,35 +75,9 @@ const Slider = props => {
     size:"1.1em"
   }]
   return (
-    // <div className="col-lg-12 row">
-    //   <div className="col-lg-9"  css={SliderCSS}>
-    //       <SliderContent
-    //         translate={translate}
-    //         transition={transition}
-    //         width={getWidth() * props.slides.length}
-    //       >
-    //         {props.slides.map((slide, i) => (
-    //           <Slide key={slide + i} content={slide} />
-    //         ))}
-    //       </SliderContent>
-    //       <SliderCaptions _Text={text} />
-    //       <Arrow direction="left" handleClick={prevSlide} />
-    //       <Arrow direction="right" handleClick={nextSlide} />
-    //   </div>
-    //   <div className="col-lg-3" css={Thump}>
-    //     {/* {props.slides.map((slide, i) => (
-    //     <Thumpnail slides={props.slides} activeIndex={activeIndex} content={slide} />
-    //     ))} */}
-    //      {props.slides.map((content, i) => (
-    //     <div key={i}>
-    //         <img style={{width: '100px',height: '100px', opacity: 'unset'}} src={content} />
-    //     </div>
-    //   ))}
-    //   </div>
-    // </div>
     <div className="container">
-      <div className="row col-lg-12" style={{backgroundColor:'#222c33'}}>
-        <div className="col-lg-10" css={SliderCSS}>
+      <div className="col-lg-12" style={{backgroundColor:'#222c33'}}>
+        <div className="col-lg-10 col-md-10" css={SliderCSS}>
             <SliderContent
                   css={image}
                   translate={translate}
@@ -106,14 +87,19 @@ const Slider = props => {
                   {props.slides.map((slide, i) => (
                     <Slide key={slide + i} content={slide} />
                   ))}
+                  {/* <iframe src='https://www.youtube.com/watch?v=IUN664s7N-c'
+                    frameBorder='0'
+                    allow='autoplay; encrypted-media'
+                    title='video'
+            /> */}
                 </SliderContent>
                 <SliderCaptions _Text={text} />
-                <Arrow direction="left" handleClick={prevSlide} />
-                <Arrow direction="right" handleClick={nextSlide} />
+                <Arrow direction="left" handleClick={prevSlide} isChangeable={activeIndex === 0 ? true : false}/>
+                <Arrow direction="right" handleClick={nextSlide} isChangeable={activeIndex===props.slides.length-1?true:false}/>               
         </div>
-        <div className="col-lg-2" css={Thump}>
+        <div className="col-lg-2 col-md-2 hidden-sm-down sm-thum" css={Thump}>
           {props.slides.map((content, i) => (
-            <div key={i} style={{margin:"10px 0px"}}>
+            <div key={i} onClick={()=>changeonClick(i)} style={{margin:"10px 0px"}}>
                 <img className="thumpnails" style={{width:"100%", height: '100px', opacity: '0.5'}} src={content} />
             </div>
           ))}
@@ -139,8 +125,6 @@ const image = css`
 const SliderCSS = css`
   position: relative;
   height: 80vh;
-  // width: 80vw;
-  // margin: 0 auto;
   overflow: hidden;
   right:20%;
   left:0;
