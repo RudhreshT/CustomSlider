@@ -96,6 +96,8 @@ const Slider = props => {
                 <SliderCaptions _Text={text} />
                 <Arrow direction="left" handleClick={prevSlide} isChangeable={activeIndex === 0 ? true : false}/>
                 <Arrow direction="right" handleClick={nextSlide} isChangeable={activeIndex===props.slides.length-1?true:false}/>               
+        
+                <Dots slides={props.slides} activeIndex={activeIndex} />
         </div>
         <div className="col-lg-2 col-md-2 hidden-sm-down sm-thum" css={Thump}>
           {props.slides.map((content, i) => (
