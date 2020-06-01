@@ -12,9 +12,11 @@ var defiltStyle={
   paddingTop:'30px',
   textAlign:'center',
 }
-const SliderCaptions = ({ _Text }) => (
+const SliderCaptions = ({ _Text ,width}) => (
     <div className="caption">
-    {_Text.map((item,key)=><p style={{fontSize:item.size}} key={key}>{item.txt}</p>)}
+    <div className="text-container">
+    {_Text.map((item,key)=><div style={{fontSize:item.size}} key={key}>{item.txt}</div>)}
+    </div>
     <span className="event" >COVID-19</span>
   </div>
 )

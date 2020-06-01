@@ -7,7 +7,7 @@ const arrow = [
   require('./images/right.png'),
 ];
 
-const Arrow = ({ direction, handleClick,isChangeable=true }) => (
+const Arrow = ({ direction, handleClick}) => (
   <div
     css={css`
       display: flex;
@@ -32,7 +32,9 @@ const Arrow = ({ direction, handleClick,isChangeable=true }) => (
       }
     `}
   >
-    {direction === 'right' ? <img onClick={!isChangeable && handleClick} style={{width:'100%',height:'100%',opacity: !isChangeable ? direction ==="right" ? 1:0.6 : 0.6}} src={arrow[1]} /> : <img onClick={!isChangeable && handleClick} style={{width:'100%',height:'100%',opacity: !isChangeable ? direction ==="left" ? 1:0.6 : 0.6}} src={arrow[0]} />}
+    {/* {direction === 'right' ? <img onClick={!isChangeable && handleClick} style={{width:'100%',height:'100%',opacity: !isChangeable ? direction ==="right" ? 1:0.6 : 0.6}} src={arrow[1]} /> : <img onClick={!isChangeable && handleClick} style={{width:'100%',height:'100%',opacity: !isChangeable ? direction ==="left" ? 1:0.6 : 0.6}} src={arrow[0]} />} */}
+    {direction === 'right' ? <img onClick={handleClick} style={{width:'100%',height:'100%',opacity: 'unset !important' }} src={arrow[1]} /> : <img onClick={handleClick} style={{width:'100%',height:'100%',opacity: 'unset !important'}} src={arrow[0]} />}
+
   </div>
 )
 

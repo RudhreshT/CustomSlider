@@ -40,7 +40,8 @@ const Slider = props => {
     })
   } 
   let changeonClick=(index)=>{
-    console.log('enter');
+    console.log('index',index);
+    console.log('active index',activeIndex + 1);
     return setState({
       ...state,
       translate: index * getWidth(),
@@ -62,7 +63,7 @@ const Slider = props => {
       translate: (activeIndex - 1) * getWidth()
     })
   }
-  const text=[{
+  const text = [{
     txt:"EVENT - Apr 20, 2020 at 1:00 PM UEDT",
     size:"1.3em"
   },
@@ -74,9 +75,10 @@ const Slider = props => {
     txt:"Our attitudes toward space, both virtual and physical, are changing as we continue to live through the COVID-19 pandemic",
     size:"1.1em"
   }]
+
   return (
     <div className="container">
-      <div className="col-lg-12" style={{backgroundColor:'#222c33'}}>
+      <div className="main col-lg-12" style={{backgroundColor:'#222c33',paddingLeft: 0}}>
         <div className="col-lg-10 col-md-10" css={SliderCSS}>
             <SliderContent
                   css={image}
@@ -85,7 +87,7 @@ const Slider = props => {
                   width={getWidth() * props.slides.length}
                 >
                   {props.slides.map((slide, i) => (
-                    <Slide key={slide + i} content={slide} />
+                    <Slide className="thumpnails" key={slide + i} content={slide} />
                   ))}
                   {/* <iframe src='https://www.youtube.com/watch?v=IUN664s7N-c'
                     frameBorder='0'
@@ -93,18 +95,20 @@ const Slider = props => {
                     title='video'
             /> */}
                 </SliderContent>
-                <SliderCaptions _Text={text} />
-                <Arrow direction="left" handleClick={prevSlide} isChangeable={activeIndex === 0 ? true : false}/>
-                <Arrow direction="right" handleClick={nextSlide} isChangeable={activeIndex===props.slides.length-1?true:false}/>               
-        
+                {/* <Arrow direction="left" handleClick={prevSlide} isChangeable={activeIndex === 0 ? true : false}/>
+                <Arrow direction="right" handleClick={nextSlide} isChangeable={activeIndex===props.slides.length-1?true:false}/>*/}
+                {props.slides[activeIndex].type === "img" &&<SliderCaptions _Text={text} width={getWidth()}/>}
+                <Arrow direction="left" handleClick={prevSlide} />
+                <Arrow direction="right" handleClick={nextSlide} />               
+                
                 <Dots slides={props.slides} activeIndex={activeIndex} />
         </div>
         <div className="col-lg-2 col-md-2 hidden-sm-down sm-thum" css={Thump}>
           {props.slides.map((content, i) => (
             <div key={i} onClick={()=>changeonClick(i)} style={{margin:"10px 0px"}}>
-                <img className="thumpnails" style={{width:"100%", height: '100px', opacity: '0.5'}} src={content} />
+                <img className="thumpnails" style={{width:"100%", height: '100px', opacity: activeIndex === i ? '1' : '0.5'}} src={content.type === 'img' ? content.url : content.thump} />
             </div>
-          ))}
+          ))} 
         </div>
       </div>
     </div>

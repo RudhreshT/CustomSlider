@@ -15,6 +15,7 @@ const Dot = ({ active }) => (
 )
 
 const Dots = ({ slides, activeIndex }) => (
+  console.log('dots',activeIndex),
   <div
     css={css`
       position: absolute;
