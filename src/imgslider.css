@@ -51,7 +51,7 @@
     font-size: 1.6em;
   }
   .event{
-    padding: 2px 5px 0;
+    padding: 3px 7px 3px 8px;;
     color: #909090;
     background: #D8D8D8;
     border-radius: 3px;
@@ -67,7 +67,7 @@
 
 @media screen and (max-width:767px){
   .caption{
-    top:20%;
+    top:0;
     font-size: 12px;        
   }   
   .small-txt{
@@ -90,7 +90,7 @@
     display: none!important;
   }
   .main{
-    padding-left: 15px !important;
+    /* padding-left: 15px !important; */
   }
   .video{
     padding-top: 150px;

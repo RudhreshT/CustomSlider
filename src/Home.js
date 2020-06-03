@@ -3,10 +3,23 @@ import './App.css'
 import Slider from './Slider';
 import 'react-bootstrap';
 
+const slider = [
+  require('./images/slider1.jpg'),
+  require('./images/slider2.jpg'),
+  require('./images/slider3.jpg'),
+  require('./images/slider4.jpg'),
+  require('./images/slider5.jpg'),
+  require('./images/slider6.jpg'),
+  require('./images/slider7.jpg'),
+  require('./images/slider8.jpg'),
+  require('./images/slider9.jpg'),
+  require('./images/slider10.jpg'),
+  require('./images/video.mp4'),
+];
 
 const images = [
-  {url : 'https://www.youtube.com/embed/8zxj-6smeVA',thump:'https://appsamurai.com/wp-content/uploads/2016/11/app-store-video.jpg' ,type : 'video',caption : ''},
-  {url : 'https://www.pixelstalk.net/wp-content/uploads/2016/07/1080p-Full-HD-Images.jpg', type : 'img',caption : [{
+  // {url : slider[10],thump:'https://appsamurai.com/wp-content/uploads/2016/11/app-store-video.jpg' ,type : 'video',caption : ''},
+  {url : slider[0], type : 'img',caption : [{
     txt:"EVENT - Apr 20, 2020 at 1:00 PM UEDT",
     size:"1.3em"
   },
@@ -18,15 +31,15 @@ const images = [
     txt:"Our attitudes toward space, both virtual and physical, are changing as we continue to live through the COVID-19 pandemic",
     size:"1.1em"
   }]},
-  {url : 'https://www.pixelstalk.net/wp-content/uploads/2016/07/1080p-Full-HD-Images-Free-Download-620x349.jpg',  type : 'img'},
-  {url : 'https://www.pixelstalk.net/wp-content/uploads/2016/07/Full-hd-nature-wallpapers-1080p-620x349.jpg', type : 'img'},
-  {url : 'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',  type : 'img'},
-  {url : 'https://www.pixelstalk.net/wp-content/uploads/2016/07/full-hd-wallpapers-1080p-nature-free-download-9-620x349.jpg',  type : 'img'},
-  {url : 'https://www.pixelstalk.net/wp-content/uploads/2016/07/Pictures-1080p-Full-HD-Download-620x349.jpg',  type : 'img'},
-  {url : 'https://www.pixelstalk.net/wp-content/uploads/2016/07/City-under-construction-1080p-full-hd-wallpaper-620x349.jpg',  type : 'img'},
-  {url : 'https://images.unsplash.com/photo-1534161308652-fdfcf10f62c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2174&q=80',  type : 'img'},
-  {url : 'https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2094&q=80',  type : 'img'},
-  {url : 'https://www.pixelstalk.net/wp-content/uploads/2016/07/Free-Download-1080p-Full-HD-Images-620x349.jpg',  type : 'img'}
+  {url : 'https://www.usgbc.org/sites/default/files/hero/2020-03/usgbc_34863186-edited.jpg',  type : 'img'},
+  {url : slider[2], type : 'img'},
+  {url : slider[3],  type : 'img'},
+  {url : slider[4],  type : 'img'},
+  {url : slider[5],  type : 'img'},
+  {url : slider[6],  type : 'img'},
+  {url : slider[7],  type : 'img'},
+  {url : slider[8],  type : 'img'},
+  {url : slider[9],  type : 'img'}
 ]
 
 
@@ -35,7 +48,7 @@ export default class App extends Component  {
   return (
     <div className="App">
       <div style={{marginTop:"30px"}} id="product_slider">
-          <Slider slides={images} />
+          <Slider slides={images} autoPlay={50}/>
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ const Slide = ({ content }) => (
   </div>
   :
   <div class='video' style={{width:window.width}}>
-    <div className="embed-responsive embed-responsive-16by9">
+    <div className="embed-responsive embed-responsive-16by9" style={{position: 'unset'}}>
         <iframe title='youtube' width="555" height="480" src={content.url} frameBorder="0"></iframe>
     </div>
   </div>
