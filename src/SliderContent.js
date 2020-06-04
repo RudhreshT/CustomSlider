@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from 'react'
+import React, { useReducer } from 'react'
 import { css, jsx } from '@emotion/core'
 
 const SliderContent = props => (

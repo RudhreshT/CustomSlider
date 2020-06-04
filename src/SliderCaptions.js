@@ -27,8 +27,8 @@ const small = {fontSize: '1em'}
 
 const high = {
 justifyContent: 'center',
-maxWidth: '60%',
-fontSize: '3rem',
+maxWidth: '56%',
+fontSize: '2.8rem',
 margin: '0.5rem auto',
 lineHeight: '3rem'}
 

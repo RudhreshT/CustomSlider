@@ -124,18 +124,20 @@ const Slider = props => {
       document.getElementById("slidercontainer").className = 'col-lg-12';
     }
   }
-
+  //  return(
+  //    <div className = "1"  style={{display:'flex',width:'100%'}}>
+  //      <div style={{display:'flex',width:'80%'}}>abc</div>
+  //      <div style={{display:'flex',width:'20%'}}>zx</div>
+  //    </div>
+  //  )
   return (
     <div>
-      <div>
-      {/* <button id="colapsebutton" className="btn btn-light">Collapse Thumbnail</button>   */}
-          <div className="custom-control custom-switch" id="colapsebutton">
-          <input type="checkbox" className="custom-control-input" onClick={()=>thumponClick()} id="customSwitches"/>
-          <label className="custom-control-label" htmlFor="customSwitches">Collapse Thumbnail</label>
-          </div>
-      </div>
       <div className="main col-lg-12" style={{backgroundColor:'#222c33',paddingLeft: 0,paddingRight: 0}}>
-        <div id="slidercontainer" className="col-lg-12" >
+        <div id="slidercontainer" className="col-lg-12">
+          <div className="custom-control custom-switch" id="colapsebutton">
+            <input type="checkbox" className="custom-control-input" onClick={()=>thumponClick()} id="customSwitches"/>
+            <label className="custom-control-label" htmlFor="customSwitches"></label>
+          </div>
             <SliderContent
                   css={image}
                   translate={translate}
