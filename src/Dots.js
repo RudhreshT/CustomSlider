@@ -17,7 +17,6 @@ const Dot = ({ active }) => (
 )
 
 const Dots = ({ slides, activeIndex }) => (
-  console.log('dots',activeIndex),
   <div
     css={css`
       position: absolute;
@@ -28,8 +27,9 @@ const Dots = ({ slides, activeIndex }) => (
       justify-content: center;
     `}
   >
+    
     {slides.map((slide, i) => (
-      <Dot key={slide} active={activeIndex === i} />
+      <Dot key={i} active={activeIndex === i} />
     ))}
   </div>
 )

@@ -10,22 +10,11 @@ import SliderCaptions from './SliderCaptions'
 import Thumpnail from './SliderThump'
 import 'react-bootstrap';
 
-const getWidth = () => window.innerWidth
-
 /**
  * @function Slider
  */
 const Slider = props => {
-  // const getWidth = () => window.innerWidth
-
-  // const [state, setState] = useState({
-  //   activeIndex: 0,
-  //   translate: 0,
-  //   transition: 0.45
-  // })
-
-  // const { translate, transition, activeIndex } = state
-
+  const getWidth = () => window.innerWidth 
   const { slides } = props
 
   const firstSlide = slides[0]
@@ -54,27 +43,27 @@ const Slider = props => {
   useEffect(() => {
     const play = () => {
       autoPlayRef.current()
-  }
-
-  const smooth = e => {
-    if (e.target.className.includes('SliderContent')) {
-      transitionRef.current()
     }
-  }
+    
+    const smooth = e => {
+      if (e.target.className.includes('SliderContent')) {
+        transitionRef.current()
+      }
+    }
 
-  const resize = () => {
-    resizeRef.current()
-  }
+    const resize = () => {
+      resizeRef.current()
+    }
 
-  const interval = setInterval(play, props.autoPlay * 1000)
-  const transitionEnd = window.addEventListener('transitionend', smooth)
-  const onResize = window.addEventListener('resize', resize)
+    const interval = setInterval(play, props.autoPlay * 1000)
+    const transitionEnd = window.addEventListener('transitionend', smooth)
+    const onResize = window.addEventListener('resize', resize)
 
-  return () => {
-    clearInterval(interval)
-    window.removeEventListener('transitionend', transitionEnd)
-    window.removeEventListener('resize', onResize)
-  }
+    return () => {
+      clearInterval(interval)
+      window.removeEventListener('transitionend', transitionEnd)
+      window.removeEventListener('resize', onResize)
+    }
   }, [])
 
   useEffect(() => {
@@ -87,13 +76,9 @@ const Slider = props => {
 
   const smoothTransition = () => {
     let _slides = []
-  
-    // We're at the last slide.
     if (activeSlide === slides.length - 1)
       _slides = [slides[slides.length - 2], lastSlide, firstSlide]
-    // We're back at the first slide. Just reset to how it was on initial render
     else if (activeSlide === 0) _slides = [lastSlide, firstSlide, secondSlide]
-    // Create an array of the previous last slide, and the next two slides that follow it.
     else _slides = slides.slice(activeSlide - 1, activeSlide + 2)
   
     setState({
@@ -104,22 +89,6 @@ const Slider = props => {
     })
   }
 
-  // const nextSlide = () => {
-  //   if (activeIndex === props.slides.length - 1) {
-  //     return setState({
-  //       ...state,
-  //       translate: 0,
-  //       activeIndex: 0
-  //     })
-  //   }
-
-  //   setState({
-  //     ...state,
-  //     activeIndex: activeIndex + 1,
-  //     translate: (activeIndex + 1) * getWidth()
-  //   })
-  // } 
-
   const nextSlide = () => 
     setState({
       ...state,
@@ -128,32 +97,14 @@ const Slider = props => {
     })
   
   let changeonClick=(index)=>{
-    console.log('index',index);
-    // console.log('active index',activeIndex + 1);
+    console.log(index === activeSlide ? activeSlide : index)
+    console.log(activeSlide)
     return setState({
       ...state,
       translate: index * getWidth(),
       activeSlide: index
     })
   }
-
-  
-  
-  // const prevSlide = () => {
-  //   if (activeIndex === 0) {
-  //     return setState({
-  //       ...state,
-  //       translate: (props.slides.length - 1) * getWidth(),
-  //       activeIndex: props.slides.length - 1
-  //     })
-  //   }
-
-  //   setState({
-  //     ...state,
-  //     activeIndex: activeIndex - 1,
-  //     translate: (activeIndex - 1) * getWidth()
-  //   })
-  // }
 
   const prevSlide = () =>
   setState({
@@ -162,23 +113,29 @@ const Slider = props => {
     activeSlide: activeSlide === 0 ? slides.length - 1 : activeSlide - 1
   })
 
-  const text = [{
-    txt:"EVENT - Apr 20, 2020 at 1:00 PM UEDT",
-    css:"small"
-  },
-  {
-    txt:"Changes in the Psychology of Design: Rethinking Space",
-    css:"high"
-  },
-  {
-    txt:"Our attitudes toward space, both virtual and physical, are changing as we continue to live through the COVID-19 pandemic",
-    css:"medium"
-  }]
+  let thumponClick=()=>{
+    if(document.getElementById("thump").style.display === 'none'){
+      document.getElementById("thump").style.display = 'block';
+      console.log(document.getElementById("slidercontainer").className)
+      document.getElementById("slidercontainer").className = 'col-lg-10';
+    }
+    else{
+      document.getElementById("thump").style.display = 'none'
+      document.getElementById("slidercontainer").className = 'col-lg-12';
+    }
+  }
 
   return (
-    <div className="">
+    <div>
+      <div>
+      {/* <button id="colapsebutton" className="btn btn-light">Collapse Thumbnail</button>   */}
+          <div className="custom-control custom-switch" id="colapsebutton">
+          <input type="checkbox" className="custom-control-input" onClick={()=>thumponClick()} id="customSwitches"/>
+          <label className="custom-control-label" htmlFor="customSwitches">Collapse Thumbnail</label>
+          </div>
+      </div>
       <div className="main col-lg-12" style={{backgroundColor:'#222c33',paddingLeft: 0,paddingRight: 0}}>
-        <div id="slidercontainer" className="col-lg-12 col-md-12" css={SliderCSS}>
+        <div id="slidercontainer" className="col-lg-12" >
             <SliderContent
                   css={image}
                   translate={translate}
@@ -186,33 +143,29 @@ const Slider = props => {
                   width={getWidth() * _slides.length}
                 >
                   {_slides.map((_slide, i) => (
-                    <Slide width={getWidth()} key={_slide + i} content={_slide} />
+                    <Slide key={_slide + i} content={_slide} />
                   ))}
-                  {/* {props.slides.map((slide, i) => (
-                    <Slide className="thumpnails" key={slide + i} content={slide} />
-                  ))} */}
                   {/* <iframe src='https://www.youtube.com/watch?v=IUN664s7N-c'
                     frameBorder='0'
                     allow='autoplay; encrypted-media'
                     title='video'
                   /> */}
                 </SliderContent>
-                {/* <Arrow direction="left" handleClick={prevSlide} isChangeable={activeIndex === 0 ? true : false}/>
-                <Arrow direction="right" handleClick={nextSlide} isChangeable={activeIndex===props.slides.length-1?true:false}/>*/}
-                {props.slides[activeSlide].type === "img" &&<SliderCaptions _Text={text} width={getWidth()}/>}
+                {/* {props.slides[activeSlide].type === "img" &&<SliderCaptions _Text={text} width={getWidth()}/>} */}
                 
                 <Arrow direction="left" handleClick={prevSlide} />
-                <Arrow direction="right" handleClick={nextSlide} />               
+                <Arrow direction="right" handleClick={nextSlide} />       
+                        
         </div>
-        {/* <div id="thump" style={{display:'block'}} className="col-lg-2 col-md-2 hidden-sm-down sm-thum" css={Thump}>
+        <div id="thump" style={{display:'none'}} className="col-lg-2 col-md-2 hidden-sm-down sm-thum" css={Thump}>
           {props.slides.map((content, i) => (
             <div key={i} onClick={()=>changeonClick(i)} style={{margin:"10px 0px"}}>
                 <img className="thumpnails" style={{width:"100%", height: '100px', opacity: activeSlide === i ? '1' : '0.5'}} src={content.type === 'img' ? content.url : content.thump} />
             </div>
           ))} 
-        </div> */}
+        </div>
       </div>
-      <Dots slides={props.slides} activeIndex={activeSlide} />
+      <Dots slides={slides} activeIndex={activeSlide} />
     </div>
   )
 }
