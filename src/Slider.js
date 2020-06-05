@@ -1,13 +1,13 @@
 /** @jsx jsx */
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { css, jsx } from '@emotion/core'
 import SliderContent from './SliderContent'
 import Slide from './Slide'
 import Arrow from './Arrow'
 import Dots from './Dots'
 import './App.css'
-import SliderCaptions from './SliderCaptions'
-import Thumpnail from './SliderThump'
+// import SliderCaptions from './SliderCaptions'
+// import Thumpnail from './SliderThump'
 import 'react-bootstrap';
 
 /**
@@ -128,7 +128,6 @@ const Slider = props => {
     }
   }
   
-  var sliderwidth = getWidth() * _slides.length;
   //  return(
   //    <div className = "1"  style={{display:'flex',width:'100%'}}>
   //      <div style={{display:'flex',width:'80%'}}>abc</div>
@@ -161,7 +160,7 @@ const Slider = props => {
           <div id="thump" className="col-lg-2 col-md-2 hidden-sm-down sm-thum" style={{display:'none'}} css={Thump}>
             {props.slides.map((content, i) => (
               <div key={i} onClick={()=>changeonClick(i)} style={{margin:"10px 0px"}}>
-                  <img className="thumpnails" style={{width:"100%", height: '100px', opacity: activeSlide === i ? '1' : '0.5'}} src={content.type === 'img' ? content.url : content.thump} />
+                  <img className="thumpnails" alt='' style={{width:"100%", height: '100px', opacity: activeSlide === i ? '1' : '0.5'}} src={content.type === 'img' ? content.url : content.thump} />
               </div>
             ))} 
           </div>
@@ -183,16 +182,5 @@ scrollbar-width: none;
 -ms-overflow-style: none;
 `
 
-
-const SliderCSS = css`
-  position: relative;
-  height: 80vh;
-  overflow: hidden;
-  right:20%;
-  left:0;
-  background-color: #282c34;
-  padding-right : 0;
-  padding-left : 0;
-`
 
 export default Slider

@@ -1,17 +1,18 @@
-import React, {Component} from 'react';
-import { css, jsx } from '@emotion/core'
-var defiltStyle={
-  position: 'absolute',
-  left: '0px',
-  top:'30%',
-  bottom:'0px',
-  right:'0px',
-  color:'#ffff',
-  paddingLeft:'10px',
-  paddingRight:'10px',
-  paddingTop:'30px',
-  textAlign:'center',
-}
+import React from 'react';
+// import { css, jsx } from '@emotion/core'
+
+// var defiltStyle={
+//   position: 'absolute',
+//   left: '0px',
+//   top:'30%',
+//   bottom:'0px',
+//   right:'0px',
+//   color:'#ffff',
+//   paddingLeft:'10px',
+//   paddingRight:'10px',
+//   paddingTop:'30px',
+//   textAlign:'center',
+// }
 
 
 

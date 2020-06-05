@@ -1,19 +1,19 @@
 /** @jsx jsx */
-import React from 'react'
-import { css, jsx } from '@emotion/core'
+// import React from 'react'
+import {jsx } from '@emotion/core'
 import SliderCaptions from './SliderCaptions'
 
-let setWidth = (_event) => {
+// let setWidth = (_event) => {
 
-  if (typeof _event === 'object'){
-    console.log(_event)
-  }
-}
+//   if (typeof _event === 'object'){
+//     console.log(_event)
+//   }
+// }
 
 const Slide = ({ content }) => (
-  <div style={{width: '100%',height: '100%',position: 'relative'}} ref={(_event)=>setWidth(_event)}>
+  <div style={{width: '100%',height: '100%',position: 'relative'}}>
   {content.type === "img" ?
-    <img width="100" height="100" className="slider-image" src={content.url}/>
+    <img width="100" height="100" className="slider-image" src={content.url} alt=""/>
   :
   <div className='video' style={{width:window.width}}>
     <div className="embed-responsive embed-responsive-16by9" style={{position: 'unset'}}>
