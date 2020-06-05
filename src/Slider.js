@@ -97,7 +97,7 @@ const Slider = props => {
       })
     }
     if(timer ===null){
-      timer="water";
+      timer="time";
       setTimeout(()=>timer=null,2000)
     }
   }
@@ -121,7 +121,7 @@ const Slider = props => {
       })
     }
     if(timer ===null){
-      timer="water";
+      timer="time";
       setTimeout(()=>timer=null,2000)
     }                                          
 }
