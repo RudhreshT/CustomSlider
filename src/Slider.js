@@ -5,7 +5,7 @@ import SliderContent from './SliderContent'
 import Slide from './Slide'
 import Arrow from './Arrow'
 import Dots from './Dots'
-import './imgslider.css'
+import './App.css'
 import SliderCaptions from './SliderCaptions'
 import Thumpnail from './SliderThump'
 import 'react-bootstrap';
@@ -118,12 +118,17 @@ const Slider = props => {
       document.getElementById("thump").style.display = 'block';
       console.log(document.getElementById("slidercontainer").className)
       document.getElementById("slidercontainer").className = 'col-lg-10';
+      console.log(getWidth() * _slides.length - 315);
+      //document.getElementById("slider").style.width = getWidth() * _slides.length - 315;
     }
     else{
       document.getElementById("thump").style.display = 'none'
       document.getElementById("slidercontainer").className = 'col-lg-12';
+      //document.getElementById("slider").style.width = getWidth() * _slides.length;
     }
   }
+  
+  var sliderwidth = getWidth() * _slides.length;
   //  return(
   //    <div className = "1"  style={{display:'flex',width:'100%'}}>
   //      <div style={{display:'flex',width:'80%'}}>abc</div>
@@ -138,34 +143,29 @@ const Slider = props => {
             <input type="checkbox" className="custom-control-input" onClick={()=>thumponClick()} id="customSwitches"/>
             <label className="custom-control-label" htmlFor="customSwitches"></label>
           </div>
-            <SliderContent
-                  css={image}
+            <SliderContent 
                   translate={translate}
                   transition={transition}
-                  width={getWidth() * _slides.length}
+                  width= {getWidth() * _slides.length}
                 >
                   {_slides.map((_slide, i) => (
                     <Slide key={_slide + i} content={_slide} />
                   ))}
-                  {/* <iframe src='https://www.youtube.com/watch?v=IUN664s7N-c'
-                    frameBorder='0'
-                    allow='autoplay; encrypted-media'
-                    title='video'
-                  /> */}
-                </SliderContent>
-                {/* {props.slides[activeSlide].type === "img" &&<SliderCaptions _Text={text} width={getWidth()}/>} */}
-                
+                  
+                </SliderContent>                
                 <Arrow direction="left" handleClick={prevSlide} />
                 <Arrow direction="right" handleClick={nextSlide} />       
                         
         </div>
-        <div id="thump" style={{display:'none'}} className="col-lg-2 col-md-2 hidden-sm-down sm-thum" css={Thump}>
-          {props.slides.map((content, i) => (
-            <div key={i} onClick={()=>changeonClick(i)} style={{margin:"10px 0px"}}>
-                <img className="thumpnails" style={{width:"100%", height: '100px', opacity: activeSlide === i ? '1' : '0.5'}} src={content.type === 'img' ? content.url : content.thump} />
-            </div>
-          ))} 
-        </div>
+        {/* <div  className="col-lg-2 col-md-2 hidden-sm-down"  > */}
+          <div id="thump" className="col-lg-2 col-md-2 hidden-sm-down sm-thum" style={{display:'none'}} css={Thump}>
+            {props.slides.map((content, i) => (
+              <div key={i} onClick={()=>changeonClick(i)} style={{margin:"10px 0px"}}>
+                  <img className="thumpnails" style={{width:"100%", height: '100px', opacity: activeSlide === i ? '1' : '0.5'}} src={content.type === 'img' ? content.url : content.thump} />
+              </div>
+            ))} 
+          </div>
+        {/* </div> */}
       </div>
       <Dots slides={slides} activeIndex={activeSlide} />
     </div>
@@ -178,12 +178,11 @@ top: 0;
 right: 0px;
 display: grid;
 height: 80vh;
-overflow: overlay;
+overflow: auto;
+scrollbar-width: none; 
+-ms-overflow-style: none;
 `
-const image = css`
-// width: 100%;
-// display: inline;
-`
+
 
 const SliderCSS = css`
   position: relative;
