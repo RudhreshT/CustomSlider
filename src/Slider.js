@@ -14,30 +14,30 @@ import 'react-bootstrap';
  * @function Slider
  */
 const Slider = props => {
-  const getWidth = () => window.innerWidth 
+  const getWidth = () => 1500
   const { slides } = props
 
-  const firstSlide = slides[0]
-  const secondSlide = slides[1]
-  const lastSlide = slides[slides.length - 1]
+  // const firstSlide = slides[0]
+  // const secondSlide = slides[1]
+  // const lastSlide = slides[slides.length - 1]
 
   const [state, setState] = useState({
     activeSlide: 0,
     translate: getWidth(),
     transition: 0.45,
-    _slides: [lastSlide, firstSlide, secondSlide]
+    // _slides: [lastSlide, firstSlide, secondSlide]
   })
 
-  const { activeSlide, translate, _slides, transition } = state
+  const { activeSlide, translate, transition } = state
 
   const autoPlayRef = useRef()
-  const transitionRef = useRef()
-  const resizeRef = useRef()
+  // const transitionRef = useRef()
+  // const resizeRef = useRef()
 
   useEffect(() => {
     autoPlayRef.current = nextSlide
-    transitionRef.current = smoothTransition
-    resizeRef.current = handleResize
+    // transitionRef.current = smoothTransition
+    // resizeRef.current = handleResize
   })
 
   useEffect(() => {
@@ -45,55 +45,64 @@ const Slider = props => {
       autoPlayRef.current()
     }
     
-    const smooth = e => {
-      if (e.target.className.includes('SliderContent')) {
-        transitionRef.current()
-      }
-    }
+    // const smooth = e => {
+    //   if (e.target.className.includes('SliderContent')) {
+    //     transitionRef.current()
+    //   }
+    // }
 
-    const resize = () => {
-      resizeRef.current()
-    }
+    // const resize = () => {
+    //   resizeRef.current()
+    // }
 
     const interval = setInterval(play, props.autoPlay * 1000)
-    const transitionEnd = window.addEventListener('transitionend', smooth)
-    const onResize = window.addEventListener('resize', resize)
+    // const transitionEnd = window.addEventListener('transitionend', smooth)
+    // const onResize = window.addEventListener('resize', resize)
 
     return () => {
       clearInterval(interval)
-      window.removeEventListener('transitionend', transitionEnd)
-      window.removeEventListener('resize', onResize)
+      // window.removeEventListener('transitionend', transitionEnd)
+      // window.removeEventListener('resize', onResize)
     }
   }, [])
 
-  useEffect(() => {
-    if (transition === 0) setState({ ...state, transition: 0.45 })
-  }, [transition])
+  // useEffect(() => {
+  //   if (transition === 0) setState({ ...state, transition: 0.45 })
+  // }, [transition])
 
-  const handleResize = () => {
-    setState({ ...state, translate: getWidth(), transition: 0 })
-  }
+  // const handleResize = () => {
+  //   setState({ ...state, translate: getWidth(), transition: 0 })
+  // }
 
-  const smoothTransition = () => {
-    let _slides = []
-    if (activeSlide === slides.length - 1)
-      _slides = [slides[slides.length - 2], lastSlide, firstSlide]
-    else if (activeSlide === 0) _slides = [lastSlide, firstSlide, secondSlide]
-    else _slides = slides.slice(activeSlide - 1, activeSlide + 2)
+  // const smoothTransition = () => {
+  //   let _slides = []
+  //   if (activeSlide === slides.length - 1)
+  //     _slides = [slides[slides.length - 2], lastSlide, firstSlide]
+  //   else if (activeSlide === 0) _slides = [lastSlide, firstSlide, secondSlide]
+  //   else _slides = slides.slice(activeSlide - 1, activeSlide + 2)
   
-    setState({
-      ...state,
-      _slides,
-      transition: 0,
-      translate: getWidth()
-    })
-  }
+  //   setState({
+  //     ...state,
+  //     _slides,
+  //     transition: 0,
+  //     translate: getWidth()
+  //   })
+  // }
+
   const nextSlide = () => {
     if(timer===null){
+      if (activeSlide === props.slides.length - 1) {
+        return setState({
+          ...state,
+          translate: 0,
+          activeSlide: 0
+        })
+      }
+  
       setState({
         ...state,
-        translate: translate + getWidth(),
-        activeSlide: activeSlide === slides.length - 1 ? 0 : activeSlide + 1
+        activeSlide: activeSlide + 1,
+        translate: (activeSlide + 1) * getWidth()
       })
     }
     if(timer ===null){
@@ -114,10 +123,23 @@ const Slider = props => {
 
   const prevSlide = () =>{
     if(timer===null){
+      // setState({
+      //   ...state,
+      //   translate: 0,
+      //   activeSlide: activeSlide === 0 ? slides.length - 1 : activeSlide - 1
+      // })
+      if (activeSlide === 0) {
+        return setState({
+          ...state,
+          translate: (props.slides.length - 1) * getWidth(),
+          activeSlide: props.slides.length - 1
+        })
+      }
+  
       setState({
         ...state,
-        translate: 0,
-        activeSlide: activeSlide === 0 ? slides.length - 1 : activeSlide - 1
+        activeSlide: activeSlide - 1,
+        translate: (activeSlide - 1) * getWidth()
       })
     }
     if(timer ===null){
@@ -131,7 +153,7 @@ const Slider = props => {
       document.getElementById("thump").style.display = 'block';
       console.log(document.getElementById("slidercontainer").className)
       document.getElementById("slidercontainer").className = 'col-lg-10';
-      console.log(getWidth() * _slides.length - 315);
+      // console.log(getWidth() * _slides.length - 315);
       //document.getElementById("slider").style.width = getWidth() * _slides.length - 315;
     }
     else{
@@ -158,9 +180,9 @@ const Slider = props => {
             <SliderContent 
                   translate={translate}
                   transition={transition}
-                  width= {getWidth() * _slides.length}
+                  width= {getWidth() * props.slides.length}
                 >
-                  {_slides.map((_slide, i) => (
+                  {props.slides.map((_slide, i) => (
                     <Slide key={_slide + i} content={_slide} />
                   ))}
                   

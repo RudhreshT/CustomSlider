@@ -184,12 +184,31 @@ const images = [
   }]}
 ]
 
+const sliderimages = [
+  // {url : slider[10],thump:'https://appsamurai.com/wp-content/uploads/2016/11/app-store-video.jpg' ,type : 'video',caption : ''},
+  {url : slider[0], type : 'img',caption : [{
+    txt:"EVENT - Apr 20, 2020 at 1:00 PM UEDT",
+    css:"small"
+  },
+  {
+    txt:"Changes in the Psychology of Design: Rethinking Space",
+    css:"high"
+  },
+  {
+    txt:"Our attitudes toward space, both virtual and physical, are changing as we continue to live through the COVID-19 pandemic",
+    css:"medium"
+  },
+  {
+    txt:"COVID -19",
+    css:"event"
+  }]}]
+
 export default class App extends Component  {
   render(){
   return (
     <div className="App">
       <div style={{marginTop:"50px"}} id="product_slider">
-          <Slider slides={images} autoPlay={5}/>
+          <Slider slides={sliderimages} autoPlay={5}/>
       </div>
     </div>
   );
