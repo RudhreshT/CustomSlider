@@ -88,13 +88,19 @@ const Slider = props => {
       translate: getWidth()
     })
   }
-
-  const nextSlide = () => 
-    setState({
-      ...state,
-      translate: translate + getWidth(),
-      activeSlide: activeSlide === slides.length - 1 ? 0 : activeSlide + 1
-    })
+  const nextSlide = () => {
+    if(timer===null){
+      setState({
+        ...state,
+        translate: translate + getWidth(),
+        activeSlide: activeSlide === slides.length - 1 ? 0 : activeSlide + 1
+      })
+    }
+    if(timer ===null){
+      timer="water";
+      setTimeout(()=>timer=null,2000)
+    }
+  }
   
   let changeonClick=(index)=>{
     console.log(index === activeSlide ? activeSlide : index)
@@ -106,12 +112,19 @@ const Slider = props => {
     })
   }
 
-  const prevSlide = () =>
-  setState({
-    ...state,
-    translate: 0,
-    activeSlide: activeSlide === 0 ? slides.length - 1 : activeSlide - 1
-  })
+  const prevSlide = () =>{
+    if(timer===null){
+      setState({
+        ...state,
+        translate: 0,
+        activeSlide: activeSlide === 0 ? slides.length - 1 : activeSlide - 1
+      })
+    }
+    if(timer ===null){
+      timer="water";
+      setTimeout(()=>timer=null,2000)
+    }                                          
+}
 
   let thumponClick=()=>{
     if(document.getElementById("thump").style.display === 'none'){
@@ -183,4 +196,5 @@ scrollbar-width: none;
 `
 
 
+let timer=null;
 export default Slider

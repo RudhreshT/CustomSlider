@@ -6,7 +6,8 @@ const SliderContent = props => (
   <div
     css={css`
       transform: translateX(-${props.translate}px);
-      -webkit-transform: translateX(-${props.translate}px);
+      -webkit-transform: translate(-${props.translate}px);
+      -webkit-transform-origin-x : -${props.translate}px
       -ms-transform: translateX(-${props.translate}px);
       -moz-transform: translateX(-${props.translate}px);
       -o-transform: translateX(-${props.translate}px);
