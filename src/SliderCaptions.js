@@ -18,27 +18,27 @@ import React from 'react';
 
 const SliderCaptions = ({_Text}) => (
     <div className="caption">
-    <div className="text-container">
-{_Text.map((item,key)=><div style={item.css === 'small' ? small : item.css === 'medium' ? medium : item.css === 'high' ? high : small} key={key}>{item.css === "event" ? <span className="event" >{item.txt}</span>:item.txt}</div>)}
-    </div>
+      <div className="text-container">
+  {_Text.map((item,key)=><div className= {item.css === 'small' ? 'small' : item.css === 'medium' ? 'medium' : item.css === 'high' ? 'high' : '' } key={key}>{item.css === "event" ? <span className="event" >{item.txt}</span>:item.txt}</div>)}
+      </div>
   </div>
 )
 
-const small = {fontSize: '1em'}
+// const small = {fontSize: '1em'}
 
-const high = {
-justifyContent: 'center',
-maxWidth: '56%',
-fontSize: '2.8rem',
-margin: '0.5rem auto',
-lineHeight: '3rem'}
+// const high = {
+// justifyContent: 'center',
+// maxWidth: '56%',
+// fontSize: '2.8rem',
+// margin: '0.5rem auto',
+// lineHeight: '3rem'}
 
-const medium = {
-maxWidth: '55%',
-fontSize: '1rem',
-textAlign: 'center',
-margin: '.5rem auto',
-opacity: 1,
-lineHeight: '1.4rem'}
+// const medium = {
+// maxWidth: '55%',
+// fontSize: '1rem',
+// textAlign: 'center',
+// margin: '.5rem auto',
+// opacity: 1,
+// lineHeight: '1.4rem'}
 
 export default SliderCaptions

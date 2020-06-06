@@ -208,7 +208,7 @@ export default class App extends Component  {
   return (
     <div className="App">
       <div style={{marginTop:"50px"}} id="product_slider">
-          <Slider slides={sliderimages} autoPlay={5}/>
+          <Slider slides={images} autoPlay={5}/>
       </div>
     </div>
   );

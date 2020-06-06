@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState, useEffect, useRef } from 'react'
+import React, {Component, useState, useEffect, useRef } from 'react'
 import { css, jsx } from '@emotion/core'
 import SliderContent from './SliderContent'
 import Slide from './Slide'
@@ -8,13 +8,13 @@ import Dots from './Dots'
 import './App.css'
 // import SliderCaptions from './SliderCaptions'
 // import Thumpnail from './SliderThump'
-import 'react-bootstrap';
 
 /**
  * @function Slider
  */
+const getWidth = () => window.innerWidth
 const Slider = props => {
-  const getWidth = () => 1500
+  
   const { slides } = props
 
   // const firstSlide = slides[0]
@@ -201,7 +201,7 @@ const Slider = props => {
           </div>
         {/* </div> */}
       </div>
-      <Dots slides={slides} activeIndex={activeSlide} />
+      {/* <Dots slides={slides} activeIndex={activeSlide} /> */}
     </div>
   )
 }
