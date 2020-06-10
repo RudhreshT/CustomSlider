@@ -21,7 +21,7 @@ const Slide = ({ content }) => (
     </div>
   </div>
 }
-<SliderCaptions _Text={typeof content.caption === 'object' ? content.caption : [] }/>
+<SliderCaptions _Text={typeof content.caption === 'object' ? content.caption : [] } link={content.link}/>
 {/* {content.caption&& <div style={{width:(getWidth() / 4)}}> <SliderCaptions _Text={content.caption} width={getWidth()}/></div>} */}
 </div>
 )

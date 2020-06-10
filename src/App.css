@@ -1,3 +1,4 @@
+
 #slidercontainer{
   position: relative;
   height: 80vh;
@@ -12,7 +13,7 @@
   .caption{
   position: absolute;
   left: 0px;
-  top:15%;
+  top:25%;
   bottom:0px;
   right:10px;
   color:white;
@@ -21,7 +22,17 @@
   padding-top:30px;
   text-align:center;
   }
-  
+
+  .caption a{
+    color:white;
+    text-decoration: none;
+  }
+
+  .caption a:visited{
+    color:white;
+    text-decoration: none;
+  }
+    
   .small{
     font-size: 1.2em;
   }
@@ -47,7 +58,7 @@
   padding: 3px 7px 3px 8px;;
   color: #909090;
   background: #D8D8D8;
-  border-radius: 3px;
+  border-radius: 5px;
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
@@ -70,31 +81,47 @@
   width: 100%;
   opacity: 0.5;
   }
-  
-  
-  @media screen and (max-width:992px){
+ 
+.thump_slider {
+    top: 0;
+    left: 0; 
+    scroll-behavior: smooth;
+}
+
+@media screen and (max-width:1024px){
   .caption{
-  top:15px;
+  top:300px;
   padding-left:0px !important;
   padding-right:0px !important;
   right: 0 !important;     
   }
+  .arrow{
+    height: 30px !important;
+    width: 30px !important;
+  }
+  .arrow_group{
+    height: 35px !important;
+    width: 35px !important;
+  }
   .small{
-    font-size: 1.2em;
+    font-size: 2em;
   }
   .medium{
     max-width: 60%;
-    font-size: 1.4em;
+    font-size: 1.8em;
     text-align: 'center';
     margin: .5rem auto;
     opacity: 1;
-    line-height: 1.4rem;
+    line-height: 1.8rem;
   }
   .high{
-    max-width: 70%;
-    font-size: 3rem;
-    margin: 0.5rem auto;
-    line-height: 3rem;
+    max-width: 75% !important;
+    font-size: 3rem !important;
+    margin: 0.5rem auto !important;
+    line-height: 3rem !important;
+  }
+  .event{
+    font-size: 20px;
   }
   #colapsebutton{
   display: none;
@@ -106,13 +133,113 @@
   padding-top: 150px;
   }
   }
-  
-  @media screen and (max-width:700px){
+ 
+  @media screen and (max-width:992px){
+  .caption{
+  top:250px;
+  padding-left:0px !important;
+  padding-right:0px !important;
+  right: 0 !important;     
+  }
+  .arrow{
+    height: 28px !important;
+    width: 28px !important;
+  }
+  .arrow_group{
+    height: 33px !important;
+    width: 33px !important;
+  }
+  .small{
+    font-size: 1.5em;
+  }
+  .medium{
+    max-width: 60%;
+    font-size: 1.5em;
+    text-align: 'center';
+    margin: .5rem auto;
+    opacity: 1;
+    line-height: 1.5rem;
+  }
+  .high{
+    max-width: 70%;
+    font-size: 3rem;
+    margin: 0.5rem auto;
+    line-height: 3rem;
+  }
+  .event{
+    font-size: 18px;
+  }
+  #colapsebutton{
+  display: none;
+  }
+  .sm-thum{
+  display: none!important;
+  }
+  .video{
+  padding-top: 150px;
+  }
+  }
+
+  @media screen and (max-width:800px){
     .caption{
-    top:5px;
+    top:200px;
     padding-left:0px !important;
     padding-right:0px !important;
     right: 0 !important;     
+    }
+    .arrow{
+      height: 26px !important;
+      width: 26px !important;
+    }
+    .arrow_group{
+      height: 31px !important;
+      width: 31px !important;
+    }
+    .small{
+      font-size: 1.4em;
+    }
+    .medium{
+      max-width: 60%;
+      font-size: 1.4em;
+      text-align: 'center';
+      margin: .5rem auto;
+      opacity: 1;
+      line-height: 1.4rem;
+    }
+    .high{
+      max-width: 70%;
+      font-size: 3rem;
+      margin: 0.5rem auto;
+      line-height: 3rem;
+    }
+    .event{
+      font-size: 15px;
+    }
+    #colapsebutton{
+    display: none;
+    }
+    .sm-thum{
+    display: none!important;
+    }
+    .video{
+    padding-top: 150px;
+    }
+    }
+  
+  @media screen and (max-width:700px){
+    .caption{
+    top:200px;
+    padding-left:0px !important;
+    padding-right:0px !important;
+    right: 0 !important;     
+    }
+    .arrow{
+      height: 25px !important;
+      width: 25px !important;
+    }
+    .arrow_group{
+      height: 30px !important;
+      width: 30px !important;
     }
     .small{
       font-size: 1.2em;
@@ -123,7 +250,7 @@
       text-align: 'center';
       margin: .5rem auto;
       opacity: 1;
-      line-height: 1.4rem;
+      line-height: 1.3rem;
     }
     .high{
       max-width: 60%;
@@ -131,7 +258,9 @@
       margin: 0.5rem auto;
       line-height: 2.5rem;
     }
-    
+    .event{
+      font-size: 13px;
+    }
     #colapsebutton{
     display: none;
     }
@@ -145,13 +274,21 @@
   
   @media screen and (max-width:550px){
     .caption{
-    top:0;
+    top:100px;
     padding-left:0px !important;
     padding-right:0px !important;
     right: 0 !important;     
     }
+    .arrow{
+      height: 25px !important;
+      width: 25px !important;
+    }
+    .arrow_group{
+      height: 30px !important;
+      width: 30px !important;
+    }
     .small{
-      font-size: 1em;
+      font-size: 1.2em;
     }
     .medium{
       max-width: 60%;
@@ -159,13 +296,16 @@
       text-align: 'center';
       margin: .5rem auto;
       opacity: 1;
-      line-height: 1.3rem;
+      line-height: 1.2rem;
     }
     .high{
       max-width: 75% !important;
       font-size: 1.8rem !important;
       margin: 0.5rem auto !important;
       line-height: 1.8rem !important;
+    }
+    .event{
+      font-size: 12px;
     }
     #colapsebutton{
     display: none;
@@ -177,3 +317,49 @@
     padding-top: 150px;
     }
     }
+
+    @media screen and (max-width:400px){
+      .caption{
+      top:70px;
+      padding-left:0px !important;
+      padding-right:0px !important;
+      right: 0 !important;     
+      }
+      .arrow{
+        height: 20px !important;
+        width: 20px !important;
+      }
+      .arrow_group{
+        height: 25px !important;
+        width: 25px !important;
+      }
+      .small{
+        font-size: 1em;
+      }
+      .medium{
+        max-width: 60%;
+        font-size: 1.1em;
+        text-align: 'center';
+        margin: .5rem auto;
+        opacity: 1;
+        line-height: 1.1rem;
+      }
+      .high{
+        max-width: 75% !important;
+        font-size: 1.6rem !important;
+        margin: 0.5rem auto !important;
+        line-height: 1.6rem !important;
+      }
+      .event{
+        font-size: 10px;
+      }
+      #colapsebutton{
+      display: none;
+      }
+      .sm-thum{
+      display: none!important;
+      }
+      .video{
+      padding-top: 150px;
+      }
+  }

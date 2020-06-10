@@ -16,11 +16,12 @@ import React from 'react';
 
 
 
-const SliderCaptions = ({_Text}) => (
+const SliderCaptions = ({_Text,link}) => (
     <div className="caption">
+      <a href={link}>
       <div className="text-container">
   {_Text.map((item,key)=><div className= {item.css === 'small' ? 'small' : item.css === 'medium' ? 'medium' : item.css === 'high' ? 'high' : '' } key={key}>{item.css === "event" ? <span className="event" >{item.txt}</span>:item.txt}</div>)}
-      </div>
+      </div></a>
   </div>
 )
 
