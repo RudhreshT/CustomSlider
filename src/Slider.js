@@ -24,6 +24,7 @@ const Slider = props => {
     activeSlide: 0,
     translate: 0,
     transition: 0.45,
+    id : 0,
     // _slides: [lastSlide, firstSlide, secondSlide]
   })
 
@@ -87,15 +88,17 @@ const Slider = props => {
           activeSlide: 0
         })
       }
+
       setState({
         ...state,
         activeSlide: activeSlide + 1,
         translate: (activeSlide + 1) * getWidth()
       })
     }
+    
     if (timer === null) {
       timer = "time";
-      setTimeout(() => timer = null, 1000)
+      setTimeout(() => timer = null, 500)
     }
   }
 
@@ -109,15 +112,17 @@ const Slider = props => {
           activeSlide: props.slides.length - 1
         })
       }
+
       setState({
         ...state,
         activeSlide: activeSlide - 1,
         translate: (activeSlide - 1) * getWidth()
       })
     }
+    
     if (timer === null) {
       timer = "time";
-      setTimeout(() => timer = null, 1000)
+      setTimeout(() => timer = null, 500)
     }
   }
 
@@ -166,6 +171,12 @@ const Slider = props => {
   }
 
   const scrollthumb = (id) => {
+    // console.log(refs[id].current);
+    // console.log(typeof refs[id].current);
+    if (refs[id].current === null){
+      return
+    }
+  
     refs[id].current.scrollIntoView({
       behavior: 'smooth',
       block: 'center',

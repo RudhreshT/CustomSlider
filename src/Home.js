@@ -208,7 +208,7 @@ export default class App extends Component  {
     return (
       <div className="App">
         <div style={{}} id="product_slider">
-            <Slider slides={images} autoPlay={5} height="70"/>
+            <Slider slides={images} autoPlay={5} height="60"/>
         </div>
       </div>
     );
