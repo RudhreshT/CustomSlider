@@ -10,10 +10,10 @@ import SliderCaptions from './SliderCaptions'
 //   }
 // }
 
-const Slide = ({ content }) => (
-  <div style={{width: '100%',height: '100%',position: 'relative'}}>
+const Slide = ({ content,height }) => (
+  <div style={{width: '100%',position: 'relative'}}>
   {content.type === "img" ?
-    <img width="100" height="100" className="slider-image" src={content.url} alt=""/>
+    <img width="100" style={{height:'100%'}} className="slider-image" src={content.url} alt=""/>
   :
   <div className='video' style={{width:window.width}}>
     <div className="embed-responsive embed-responsive-16by9" style={{position: 'unset'}}>
@@ -21,7 +21,7 @@ const Slide = ({ content }) => (
     </div>
   </div>
 }
-<SliderCaptions _Text={typeof content.caption === 'object' ? content.caption : [] } link={content.link}/>
+<SliderCaptions _Text={typeof content.caption === 'object' ? content.caption : [] } link={content.link} height={height}/>
 {/* {content.caption&& <div style={{width:(getWidth() / 4)}}> <SliderCaptions _Text={content.caption} width={getWidth()}/></div>} */}
 </div>
 )

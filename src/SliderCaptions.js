@@ -16,7 +16,7 @@ import React from 'react';
 
 
 
-const SliderCaptions = ({_Text,link}) => (
+const SliderCaptions = ({_Text,link,height}) => (
     <div className="caption">
       <a href={link}>
       <div className="text-container">

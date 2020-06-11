@@ -2,6 +2,7 @@
 import React, { Component, useState, useEffect, useRef } from 'react'
 import { css, jsx } from '@emotion/core'
 import SliderContent from './SliderContent'
+import useHover from './UseHover'
 import Slide from './Slide'
 import Arrow from './Arrow'
 import './SliderCaptions';
@@ -15,19 +16,10 @@ import $ from "jquery";
  * @function Slider
  */
 
-// window.onload = (e.currentTarget.innerWidth) => console.log(e)
-// window.onresize = (e.currentTarget.innerWidth) => console.log(e)
 
-//const getWidth = () => window.innerWidth;
 let getWidth = () => Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-let getheight = () => Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
 
 const Slider = props => {
-  
-  // const firstSlide = slides[0]
-  // const secondSlide = slides[1]
-  // const lastSlide = slides[slides.length - 1]
-
   const [state, setState] = useState({
     activeSlide: 0,
     translate: 0,
@@ -35,41 +27,37 @@ const Slider = props => {
     // _slides: [lastSlide, firstSlide, secondSlide]
   })
 
+  var [hoverRef, isHovered] = useHover();
+
   const { activeSlide, translate, transition } = state
-  
   const autoPlayRef = useRef()
-  //const transitionRef = useRef()
   const resizeRef = useRef()
 
-  useEffect(() => {
+  var interval=null;
+
+   useEffect(() => {
     autoPlayRef.current = nextSlide
-    // transitionRef.current = smoothTransition
     resizeRef.current = handleResize
   })
 
   useEffect(() => {
-    const play = () => {
+    var play = () => {
       autoPlayRef.current()
     }
-
     const smooth = e => {
       if (e.target.className.includes('SliderContent')) {
-        //transitionRef.current()
       }
     }
-
     const resize = () => {
       resizeRef.current()
     }
-
-    const interval = setInterval(play, props.autoPlay * 1000)
+    interval = setInterval(play,props.autoPlay*1000)
     const transitionEnd = window.addEventListener('transitionend', smooth)
     const onResize = window.addEventListener('resize', resize)
 
     return () => {
-      clearInterval(interval)
       window.removeEventListener('transitionend', transitionEnd)
-      window.removeEventListener('resize', onResize)
+      window.addEventListener('resize', onResize);
     }
   }, [])
 
@@ -81,27 +69,15 @@ const Slider = props => {
     setState({ ...state, translate: getWidth(), transition: 0 })
   }
 
-  // const smoothTransition = () => {
-  //   let _slides = []
-  //   if (activeSlide === slides.length - 1)
-  //     _slides = [slides[slides.length - 2], lastSlide, firstSlide]
-  //   else if (activeSlide === 0) _slides = [lastSlide, firstSlide, secondSlide]
-  //   else _slides = slides.slice(activeSlide - 1, activeSlide + 2)
-
-  //   setState({
-  //     ...state,
-  //     _slides,
-  //     transition: 0,
-  //     translate: getWidth()
-  //   })
-  //}
-
-  const refs = props.slides.reduce((acc, value,i) => {
+  const refs = props.slides.reduce((acc, value, i) => {
     acc[i] = React.createRef();
     return acc;
   }, {});
 
   const nextSlide = () => {
+    if(isHovered){
+      return
+    }
     hidebefore(activeSlide);
     if (timer === null) {
       if (activeSlide === props.slides.length - 1) {
@@ -145,41 +121,38 @@ const Slider = props => {
     }
   }
 
-  let hidebefore=(key)=>{
-    if(props.slides.length === key+1){
+  let hidebefore = (key) => {
+    if (props.slides.length === key + 1) {
       scrollthumb(0)
     }
-    else{
-      scrollthumb(key+1)
+    else {
+      scrollthumb(key + 1)
     }
   }
 
-  let showbefore=(key)=>{
-    // scrollthumb(key)
-    if(key === 0){
-      scrollthumb(props.slides.length -1 )
+  let showbefore = (key) => {
+    if (key === 0) {
+      scrollthumb(props.slides.length - 1)
     }
-    else{
+    else {
       scrollthumb(key)
     }
   }
 
-  let changeonClick=(key)=>{
-    if(props.slides.length === key+1){
+  let changeonClick = (key) => {
+    if (props.slides.length === key + 1) {
       scrollthumb(key)
     }
-    else{
+    else {
       scrollthumb(key)
     }
-    // console.log("3",key)
     return setState({
       ...state,
+      autoPlayRef,
       translate: key * getWidth(),
       activeSlide: key
     })
   }
-
-  
 
   let thumponClick = () => {
     if (document.getElementById("thump").style.display === 'none') {
@@ -192,48 +165,49 @@ const Slider = props => {
     }
   }
 
-  const scrollthumb = (id) =>{
-        //console.log(id);
-        refs[id].current.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
-          inline: "nearest"
-        });}
-        
+  const scrollthumb = (id) => {
+    refs[id].current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: "nearest"
+    });
+  }
 
   return (
     <div>
-      <div className=" main col-lg-12" style={{ backgroundColor: '#222c33', paddingLeft: 0, paddingRight: 0 }}>
-        <div id="slidercontainer" className="col-lg-12">
+      <div className="main col-lg-12" style={{height:props.height+'vh'}}>
+        <div id="slidercontainer"  className="col-lg-12" >
+        {props.slides.length > 1 ?
           <div className="custom-control custom-switch" id="colapsebutton">
             <input type="checkbox" className="custom-control-input" onClick={() => thumponClick()} id="customSwitches" />
             <label className="custom-control-label" htmlFor="customSwitches"></label>
-          </div>
+          </div> : null }
+          <div ref={hoverRef} style={{height:'100%'}}>
           <SliderContent
             translate={translate}
             transition={transition}
             width={getWidth() * props.slides.length}
           >
             {props.slides.map((_slide, i) => (
-              <Slide id="caption" key={_slide + i} content={_slide} forcaptionstyle='yes'/>
+              <Slide key={_slide + i} content={_slide} height={props.height} />
             ))}
-
-          </SliderContent>
-          <Arrow direction="left" handleClick={prevSlide} />
-          <Arrow direction="right" handleClick={nextSlide} />
-
+          </SliderContent></div>
+          {props.slides.length > 1 ?
+          <div>
+              <Arrow direction="left" handleClick={prevSlide} />
+              <Arrow direction="right" handleClick={nextSlide} />
+          </div>
+          : null }
         </div>
-        {/* <div  className="col-lg-2 col-md-2 hidden-sm-down"  > */}
-        <div id="thump" className="col-lg-2 col-md-2 hidden-sm-down sm-thum" style={{ display: 'none',scrollBehavior: 'smooth'}} css={Thump}>
-          <div id ="thump_group" >
-          {props.slides.map((content, i) => (
-                <div id={"each-"+i} ref={refs[i]} className="js-flickity thump_slider" key={i} onClick={() => changeonClick(i)} style={{ margin: "10px 0px" }}>
-                  <img alt='' style={{ width: "100%", height: '100px', opacity: activeSlide === i ? '1' : '0.5' }} src={content.type === 'img' ? content.url : content.thump} />
-                </div>
-          ))}
+        <div id="thump" className="col-lg-2 col-md-2 hidden-sm-down sm-thum" style={{display: 'none', scrollBehavior: 'smooth',height: '100%' }} >
+          <div id="thump_group">
+            {props.slides.map((content, i) => (
+              <div id={"each-" + i} ref={refs[i]} className="js-flickity thump_slider" key={i} onClick={() => changeonClick(i)} style={{ margin: "10px 0px" }}>
+                <img alt='' style={{ width: "100%", height: '100px', opacity: activeSlide === i ? '1' : '0.5' }} src={content.type === 'img' ? content.url : content.thump} />
+              </div>
+            ))}
           </div>
         </div>
-        {/* </div> */}
       </div>
       {/* <Dots slides={slides} activeIndex={activeSlide} /> */}
     </div>
@@ -246,11 +220,11 @@ Slider.defaultProps = {
 }
 
 const Thump = css`
+height:{props.height}
 position: absolute;
 top: 0;
 right: 0px;
 display: grid;
-height: 80vh;
 overflow: auto;
 scroll-top: 0
 scroll-behavior: smooth;
